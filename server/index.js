@@ -40,7 +40,7 @@ app.get('/quotes/random', (req, res) => {
 })
 
 app.get('/quotes/:id', (req, res) => {
-    let idx = req.params.id;
+    let idx = req.params.id - 1;
     console.log(req.params.idx)
     
     if (idx > quotes.length){
