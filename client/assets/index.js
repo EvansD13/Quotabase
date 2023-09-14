@@ -1,12 +1,10 @@
+const textElement = document.getElementById("#Quotetext");
+const authorElement = document.getElementById("Quoteauthor");
+const randomiseButton = document.getElementById("randomise");
+const form = document.getElementById("create-form");
 
-const form = document.querySelector("#create-form");
-const textElement = document.querySelector("#text");
-const authorElement = document.querySelector("#author");
-const randomiseButton = document.querySelector("#randomise btn");
-
-
-randomiseButton.addEventListener("click", displayQuote);
 form.addEventListener("submit", createNewQuote);
+randomiseButton.addEventListener("click", displayQuote);
 
 
 
