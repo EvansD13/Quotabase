@@ -9,7 +9,7 @@ randomiseButton.addEventListener("click", displayQuote);
 
 async function displayQuote() {
   try{
-    const repsData = await fetch(`http://localhost:3000/quotes/random`)
+    const repsData = await fetch(`https://quotabase-1.onrender.com/quotes/random`)
     if (repsData.ok){
       const data = await repsData.json()
       const quote = {
@@ -34,6 +34,8 @@ async function createNewQuote(e) {
       text: e.target.text.value,
       author: e.target.author.value 
   }
+  
+
   console.log(data)
 
   const options = {
@@ -44,7 +46,7 @@ async function createNewQuote(e) {
       body: JSON.stringify(data)
   }
 
-  const response = await fetch("http://localhost:3000/quotes", options);
+  const response = await fetch(`https://quotabase-1.onrender.com/quotes`, options);
   console.log(response)
   let message = document.querySelector("#message")
   if (response.status == 201) {
