@@ -58,13 +58,13 @@ app.post("/quotes", (req, res) => {
 
     const ids = quotes.map(quote => quote.id)
     let MaxID = Math.max(...ids)
-
+    /*
     if (found != undefined){
         console.log("Quote in database")
         res.status(400).send("This quote is already in our database!")
         
     }else{
-
+        */
     newQuote["id"] = quotes.length + 1;
     req.body.id = quotes.length + 1
     
@@ -79,7 +79,7 @@ app.post("/quotes", (req, res) => {
 
 
     res.status(201).send("Added");
-}
+//}
 })
 
 module.exports = {app};
