@@ -1,11 +1,10 @@
-const textElement = document.getElementById("#Quotetext");
+const textElement = document.getElementById("Quotetext");
 const authorElement = document.getElementById("Quoteauthor");
 const randomiseButton = document.getElementById("randomise");
 const form = document.getElementById("create-form");
 
 form.addEventListener("submit", createNewQuote);
 randomiseButton.addEventListener("click", displayQuote);
-
 
 
 async function displayQuote() {
@@ -32,9 +31,10 @@ async function createNewQuote(e) {
   e.preventDefault();
 
   const data = {
-      text: e.target.name.value,
+      text: e.target.text.value,
       author: e.target.author.value 
   }
+  console.log(data)
 
   const options = {
       method: "POST",
@@ -54,6 +54,7 @@ async function createNewQuote(e) {
   }else{
     e.target.name.value = ''
     e.target.author.value ='' 
+    console.log(message)
     message.textContent = "ERR"
   }
 }

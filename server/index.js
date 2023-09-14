@@ -41,7 +41,10 @@ app.get('/quotes/random', (req, res) => {
 
 app.get('/quotes/:id', (req, res) => {
     let idx = req.params.id;
+    console.log(req.params.idx)
+    
     if (idx > quotes.length){
+        res.status(404).send(`Error! There are fewer than ${idx} quotes in the database. Please try another index to find an inspiring quote!`)
 
     }else{
         res.send(quotes[idx]);
