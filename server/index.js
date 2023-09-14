@@ -1,6 +1,7 @@
 require("dotenv").config()
 
 //const app = require('./app');
+const quotes = require("./quotes.json")
 
 const port = process.env.PORT
 
@@ -8,6 +9,7 @@ const express = require('express');
 const cors = require('cors');
 //const logger = require("./logger.js");
 
+const fs = require(`fs`)
 const app = express();
 app.use(cors());
 app.use(express.json())
@@ -27,29 +29,54 @@ app.get('/', (req, res) => {
 })
 
 app.get('/quotes', (req, res) => {
-    res.send("All the quotes!");
+    res.send(quotes);
 })
 
 app.get('/quotes/random', (req, res) => {
-    let randIdx = Math.floor(Math.random() * quotes.length());//3;
+    let randIdx = Math.floor(Math.random() * quotes.length);//3;
+    console.log()
     res.send(quotes[randIdx]);
+
 })
 
 app.get('/quotes/:id', (req, res) => {
     let idx = req.params.id;
+    if (idx > quotes.length){
 
-     res.send(quotes[idx]);
+    }else{
+        res.send(quotes[idx]);
+    }
 })
 
 app.post("/quotes", (req, res) => {
-    let newQuote = req.body; 
+    let newQuote = req.body;
+    console.log(newQuote)
+    const found = quotes.find(found => found.text.toLowerCase() === newQuote.text.toLowerCase())
+
     const ids = quotes.map(quote => quote.id)
     let MaxID = Math.max(...ids)
 
-    newQuote["id"] = MaxID + 1//quotes.length;
+    if (found != undefined){
+        console.log("Quote in database")
+        res.status(400).send("This quote is already in our database!")
+        
+    }else{
+
+    newQuote["id"] = quotes.length + 1;
+    req.body.id = quotes.length + 1
+    
+    quotes.push(req.body)
+
+    fs.writeFile("quotes.json", JSON.stringify(quotes), function(err){
+        if (err) throw err;
+        console.log("Complete")
+    })
+    console.log("Added!")
     //Max id + 1
 
-    res.status(201).send(newQuote);
+
+    res.status(201).send("Added");
+}
 })
 
 module.exports = {app};

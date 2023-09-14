@@ -6,20 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Computing Wisdom</title>
     <script src="./assets/index.js"></script>
+    <link rel = "stylesheet" href = "./assets/index.css">
+
 </head>
 <body>
+    <style>
+        body{
+            background-image: url('./assets/background.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
     <section>
         <h1>Computing Wisdom</h1>
         <div id="container">
             <h3 id="text"></h3>
             <em id="author"></em>
         </div>
-        <button>Be Inspired</button>
+        <button type = click id = "randomise">Be Inspired</button>
         <br>
         <form id="create-form">
-            <input type="text" name="name" placeholder="name">
-            <input type="text" name="author" placeholder="author">
-            <input type="submit" value="Create"> 
+            <input type="text" name="text" placeholder="Quote">
+            <input type="text" name="author" placeholder="Author">
+            <input type = submit value="Create"> 
         </form>
     </section>
 </body>
